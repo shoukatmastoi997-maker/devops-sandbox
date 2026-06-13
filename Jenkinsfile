@@ -39,23 +39,26 @@ pipeline {
                 }
             }
         }
-        stage("Pushing_Backend"){
-            steps{
+
+        stage("Pushing Backend") {
+            steps {
                 sh "docker push ${DOCKERHUB_USERNAME}/hotel-ai-reservation-backend:v1"
             }
         }
-        stage("Pushing_Frontend") {
-              steps{
-                  sh "docker push ${DOCKERHUB_USERNAME}/hotel-ai-reservation-frontend:v1"
-              }
+
+        stage("Pushing Frontend") {
+            steps {
+                sh "docker push ${DOCKERHUB_USERNAME}/hotel-ai-reservation-frontend:v1"
+            }
         }
     }
-              Post{
-                  success{
-                       echo "Pipeline Completed Successfully""
-                  }
-                  failure{
-                      echo "Pipeline Field"
-                  }
-              }
+    
+    post {
+        success {
+            echo "Pipeline Completed Successfully"
+        }
+        failure {
+            echo "Pipeline Failed"
+        }
+    }
 }
