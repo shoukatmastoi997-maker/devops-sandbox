@@ -1,0 +1,15 @@
+services:
+  backend:
+    build: ./backend
+    container_name: hotel_backend
+    env_file:
+      - ./backend/.env.example
+    volumes:
+      - ./backend/instance:/app/instance
+  frontend:
+    build: ./frontend
+    container_name: hotel_frontend
+    ports:
+      - 5173:5173
+    depends_on:
+      - backend
