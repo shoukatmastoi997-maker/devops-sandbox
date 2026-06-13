@@ -44,15 +44,15 @@ pipeline {
                 sh "docker push ${DOCKERHUB_USERNAME}/hotel-ai-reservation-backend:v1"
             }
         }
-        stage("Pushing_Frontend){
+        stage("Pushing_Frontend") {
               steps{
                   sh "docker push ${DOCKERHUB_USERNAME}/hotel-ai-reservation-frontend:v1"
               }
         }
     }
-              post{
+              Post{
                   success{
-                      echo "Pipeline Completed Successfully"
+                       echo "Pipeline Completed Successfully""
                   }
                   failure{
                       echo "Pipeline Field"
