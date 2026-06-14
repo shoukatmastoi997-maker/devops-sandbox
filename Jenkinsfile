@@ -63,13 +63,4 @@ pipeline {
             echo "Pipeline Failed"
         }
     }
-    
-    post {
-        success {
-            echo "Pipeline Completed Successfully"
-        }
-        failure {
-            echo "Pipeline Failed"
-        }
-    }
 }
