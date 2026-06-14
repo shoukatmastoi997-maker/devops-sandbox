@@ -9,11 +9,13 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo "Checking out Code from GitHub"
+                echo "Also added webhook to trigger this pipeline on every push to main branch"
             }
         }
         
         stage('Copying .env file') {
             steps {
+                // copying env file from Jenkins credentials to backend directory
                 withCredentials([file(credentialsId: 'backend-env', variable: 'envvariable')]) {
                     sh "cp \$envvariable ./backend/.env.example"
                 }
@@ -51,7 +53,6 @@ pipeline {
                 sh "docker push ${DOCKERHUB_USERNAME}/hotel-ai-reservation-frontend:v1"
             }
         }
-<<<<<<< HEAD
     }
     
     post {
@@ -61,8 +62,6 @@ pipeline {
         failure {
             echo "Pipeline Failed"
         }
-=======
->>>>>>> 7264912f29d71b9585a180e155f2e44d9673f958
     }
     
     post {
