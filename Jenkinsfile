@@ -51,6 +51,18 @@ pipeline {
                 sh "docker push ${DOCKERHUB_USERNAME}/hotel-ai-reservation-frontend:v1"
             }
         }
+<<<<<<< HEAD
+    }
+    
+    post {
+        success {
+            echo "Pipeline Completed Successfully"
+        }
+        failure {
+            echo "Pipeline Failed"
+        }
+=======
+>>>>>>> 7264912f29d71b9585a180e155f2e44d9673f958
     }
     
     post {
