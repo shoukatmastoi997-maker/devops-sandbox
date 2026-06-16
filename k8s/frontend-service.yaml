@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hotel-frontend-service
+  namespace: hotel-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: hotel-frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  

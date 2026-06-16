@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: hotel-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hotel-backend
+  template:
+    metadata:
+      labels:
+        app: hotel-backend
+    spec:
+      containers:
+      - name: hotel-backend
+        image: shoukat999/hotel-ai-reservation-backend:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - configMapRef:
+            name: hotel-backend-config
+        - secretRef:
+            name: hotel-backend-secret
+        volumeMounts:
+        - name: db-storage
+          mountPath: /app/backend/instance
+      volumes:
+      - name: db-storage
+        persistentVolumeClaim:
+          claimName: hotel-backend-pvc
+        

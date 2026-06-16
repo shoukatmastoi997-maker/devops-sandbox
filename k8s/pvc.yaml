@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hotel-backend-pvc
+  namespace: hotel-app
+spec:  
+  storageClassName: gp2
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests: 
+      storage: 1Gi
